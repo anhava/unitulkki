@@ -18,9 +18,7 @@
       "bundleIdentifier": "com.unitulkki.app",
       "infoPlist": {
         "NSMicrophoneUsageDescription": "Tarvitsemme mikrofonin käyttöoikeuden, jotta voit tallentaa unesi puhumalla.",
-        "UIBackgroundModes": [
-          "audio"
-        ]
+        "UIBackgroundModes": ["audio"]
       }
     },
     "android": {
