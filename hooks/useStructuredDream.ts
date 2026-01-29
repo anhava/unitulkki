@@ -46,30 +46,8 @@ export type UseStructuredDreamReturn = {
 };
 
 /**
- * Calculate real progress based on which fields are populated
- */
-function calculateProgress(partial: DeepPartial<DreamInterpretation> | undefined): number {
-  if (!partial) return 0;
-
-  let filled = 0;
-  const total = 8; // Total required fields
-
-  if (partial.summary) filled++;
-  if (partial.mood) filled++;
-  if (partial.symbols && partial.symbols.length > 0) filled++;
-  if (partial.emotionalAnalysis?.primaryEmotion) filled++;
-  if (partial.lifeConnections && partial.lifeConnections.length > 0) filled++;
-  if (partial.keyMessage) filled++;
-  if (partial.reflectionQuestions && partial.reflectionQuestions.length > 0) filled++;
-  if (partial.tags && partial.tags.length > 0) filled++;
-
-  // Return percentage, minimum 10% when loading
-  return Math.max(10, Math.round((filled / total) * 100));
-}
-
-/**
- * Hook for structured dream interpretation with real-time streaming
- * Uses SSE to receive progressive object updates from the API
+ * Hook for structured dream interpretation
+ * Uses non-streaming mode for React Native compatibility
  */
 export function useStructuredDream(
   options: UseStructuredDreamOptions = {}
@@ -95,7 +73,7 @@ export function useStructuredDream(
     setIsLoading(false);
   }, []);
 
-  // Submit a dream for interpretation with streaming
+  // Submit a dream for interpretation
   const interpretDream = useCallback(
     async (dream: string) => {
       if (!dream.trim() || isLoading) return;
@@ -111,12 +89,15 @@ export function useStructuredDream(
       setDreamContent(dream.trim());
       setError(null);
       setIsLoading(true);
-      setProgress(5);
+      setProgress(10);
       setInterpretation(undefined);
 
-      let finalInterpretation: DeepPartial<DreamInterpretation> | undefined;
-
       try {
+        // Simulate progress during API call
+        const progressInterval = setInterval(() => {
+          setProgress((prev) => Math.min(prev + 10, 80));
+        }, 500);
+
         const response = await fetch(`${API_URL}/api/interpret-structured`, {
           method: "POST",
           headers: {
@@ -126,88 +107,32 @@ export function useStructuredDream(
           signal: abortController.signal,
         });
 
+        clearInterval(progressInterval);
+        setProgress(90);
+
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
           throw new Error(errorData.error || "API-kutsu epäonnistui");
         }
 
-        // Check if response is SSE stream
-        const contentType = response.headers.get("content-type");
+        const data = await response.json();
 
-        if (contentType?.includes("text/event-stream")) {
-          // Handle SSE streaming
-          const reader = response.body?.getReader();
-          const decoder = new TextDecoder();
+        // Validate and set interpretation
+        const parsed = dreamInterpretationSchema.safeParse(data);
 
-          if (!reader) {
-            throw new Error("Vastausta ei voitu lukea");
-          }
-
-          let buffer = "";
-
-          while (true) {
-            const { done, value } = await reader.read();
-
-            if (done) break;
-
-            buffer += decoder.decode(value, { stream: true });
-
-            // Process complete SSE messages
-            const lines = buffer.split("\n");
-            buffer = lines.pop() || ""; // Keep incomplete line in buffer
-
-            for (const line of lines) {
-              if (line.startsWith("data: ")) {
-                const data = line.slice(6).trim();
-
-                if (data === "[DONE]") {
-                  // Streaming complete
-                  break;
-                }
-
-                try {
-                  const partialObject = JSON.parse(data);
-
-                  // Check for error in stream
-                  if (partialObject.error) {
-                    throw new Error(partialObject.error);
-                  }
-
-                  // Update interpretation with partial data
-                  finalInterpretation = partialObject;
-                  setInterpretation(partialObject);
-                  setProgress(calculateProgress(partialObject));
-                } catch (parseError) {
-                  // Skip invalid JSON lines
-                  console.warn("Failed to parse SSE data:", data);
-                }
-              }
-            }
-          }
+        if (parsed.success) {
+          setInterpretation(parsed.data);
         } else {
-          // Fallback: Handle regular JSON response (backwards compatibility)
-          const data = await response.json();
-          finalInterpretation = data;
-          setInterpretation(data);
-          setProgress(100);
-        }
-
-        // Final validation
-        if (finalInterpretation) {
-          const parsed = dreamInterpretationSchema.safeParse(finalInterpretation);
-          if (parsed.success) {
-            setInterpretation(parsed.data);
-          }
+          // Use data as-is if schema validation fails (partial data)
+          setInterpretation(data as DeepPartial<DreamInterpretation>);
         }
 
         setProgress(100);
 
         // Save dream if autoSave is enabled
-        if (autoSave && dream && finalInterpretation) {
+        if (autoSave && dream) {
           try {
-            const interpretationText = formatInterpretationForStorage(
-              finalInterpretation as DreamInterpretation
-            );
+            const interpretationText = formatInterpretationForStorage(data);
             const savedDream = await saveDream(dream.trim(), interpretationText);
             setLastSavedDream(savedDream);
             onDreamSaved?.(savedDream);

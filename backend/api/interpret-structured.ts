@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { openai } from "@ai-sdk/openai";
-import { streamObject, jsonSchema } from "ai";
+import { streamObject, generateObject, jsonSchema } from "ai";
 import type { DreamInterpretation } from "../lib/schemas/dreamInterpretation";
 
 // JSON Schema for dream interpretation with strict mode
@@ -88,6 +88,7 @@ type InterpretRequest = {
   dream: string;
   language?: "fi" | "en";
   includePremium?: boolean;
+  stream?: boolean; // Optional: request streaming mode
 };
 
 export default async function handler(
@@ -97,7 +98,7 @@ export default async function handler(
   // Enable CORS for mobile app requests
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, X-Stream-Mode");
 
   if (req.method === "OPTIONS") {
     return res.status(200).end();
@@ -109,7 +110,8 @@ export default async function handler(
       status: hasApiKey ? "ready" : "missing_api_key",
       provider: "openai",
       model: "gpt-4o-mini",
-      type: "structured-stream",
+      type: "structured",
+      supportsStreaming: true,
     });
   }
 
@@ -139,29 +141,49 @@ export default async function handler(
 
     const dreamText = body.dream.trim();
 
-    // Use streamObject for progressive streaming
-    const result = streamObject({
-      model: openai("gpt-4o-mini", { structuredOutputs: true }),
-      system: SYSTEM_PROMPT,
-      prompt: `Analysoi tämä uni ja palauta strukturoitu tulkinta:\n\n"${dreamText}"`,
-      schema: dreamInterpretationJsonSchema,
-      temperature: 0.7,
-    });
+    // Check if streaming is requested (via body, header, or query)
+    const wantStreaming =
+      body.stream === true ||
+      req.headers["x-stream-mode"] === "true" ||
+      req.query.stream === "true";
 
-    // Set streaming headers
-    res.setHeader("Content-Type", "text/event-stream");
-    res.setHeader("Cache-Control", "no-cache");
-    res.setHeader("Connection", "keep-alive");
+    if (wantStreaming) {
+      // STREAMING MODE: Use streamObject for progressive streaming
+      const result = streamObject({
+        model: openai("gpt-4o-mini", { structuredOutputs: true }),
+        system: SYSTEM_PROMPT,
+        prompt: `Analysoi tämä uni ja palauta strukturoitu tulkinta:\n\n"${dreamText}"`,
+        schema: dreamInterpretationJsonSchema,
+        temperature: 0.7,
+      });
 
-    // Stream partial objects to client
-    for await (const partialObject of result.partialObjectStream) {
-      // Send each partial update as SSE
-      res.write(`data: ${JSON.stringify(partialObject)}\n\n`);
+      // Set streaming headers
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+
+      // Stream partial objects to client
+      for await (const partialObject of result.partialObjectStream) {
+        res.write(`data: ${JSON.stringify(partialObject)}\n\n`);
+      }
+
+      // Send completion signal
+      res.write(`data: [DONE]\n\n`);
+      res.end();
+    } else {
+      // NON-STREAMING MODE: Use generateObject for complete response
+      // This works better with React Native which doesn't support SSE streaming
+      const { object } = await generateObject({
+        model: openai("gpt-4o-mini", { structuredOutputs: true }),
+        system: SYSTEM_PROMPT,
+        prompt: `Analysoi tämä uni ja palauta strukturoitu tulkinta:\n\n"${dreamText}"`,
+        schema: dreamInterpretationJsonSchema,
+        temperature: 0.7,
+      });
+
+      // Return complete JSON response
+      return res.status(200).json(object);
     }
-
-    // Send completion signal
-    res.write(`data: [DONE]\n\n`);
-    res.end();
 
   } catch (error) {
     console.error("Structured interpretation API error:", error);
