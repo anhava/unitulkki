@@ -36,7 +36,7 @@
       },
       "env": {
         "EXPO_PUBLIC_ENV": "production",
-        "EXPO_PUBLIC_API_URL": "https://backend-gf8wq9c5t-aihio-ai.vercel.app"
+        "EXPO_PUBLIC_API_URL": "https://unitulkki-api.vercel.app"
       }
     }
   },

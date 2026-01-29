@@ -83,7 +83,13 @@ deploy_backend() {
 
     # Deploy to production
     print_status "Deploying to production..."
-    vercel --prod
+    DEPLOY_URL=$(vercel --prod 2>&1 | grep -o 'https://[^ ]*vercel.app' | head -1)
+
+    if [ -n "$DEPLOY_URL" ]; then
+        print_status "Setting stable alias unitulkki-api.vercel.app..."
+        vercel alias set "$DEPLOY_URL" unitulkki-api.vercel.app
+        print_success "Alias set: https://unitulkki-api.vercel.app"
+    fi
 
     cd ..
 
