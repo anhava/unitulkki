@@ -1,0 +1,22 @@
+{
+  "name": "unitulkki-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.21",
+    "@vercel/node": "^3.0.0",
+    "ai": "^6.0.58",
+    "zod": "^3.23.8",
+    "formidable-serverless": "^1.1.1",
+    "openai": "^4.77.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.3",
+    "vercel": "^37.0.0"
+  }
+}

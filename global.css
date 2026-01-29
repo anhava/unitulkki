@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Unitulkki Dark Mode Base Styles */
+:root {
+  --color-dream-primary: #6366f1;
+  --color-dream-secondary: #8b5cf6;
+  --color-dream-accent: #a78bfa;
+}

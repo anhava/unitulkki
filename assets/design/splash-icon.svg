@@ -1,0 +1,44 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Splash icon - centered moon with stars, no background (transparent) -->
+  <defs>
+    <linearGradient id="moonGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="starGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Mask for crescent -->
+    <mask id="crescentMask">
+      <rect width="512" height="512" fill="white"/>
+      <circle cx="310" cy="180" r="100" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Moon crescent with glow -->
+  <g filter="url(#glow)">
+    <circle cx="256" cy="230" r="130" fill="url(#moonGradient)" mask="url(#crescentMask)"/>
+  </g>
+
+  <!-- Decorative stars -->
+  <g filter="url(#glow)">
+    <!-- Large star -->
+    <path d="M360 260 L367 280 L387 287 L367 294 L360 314 L353 294 L333 287 L353 280 Z" fill="url(#starGlow)"/>
+    <!-- Small stars -->
+    <circle cx="325" cy="175" r="5" fill="#F59E0B" opacity="0.9"/>
+    <circle cx="390" cy="225" r="4" fill="#F59E0B" opacity="0.7"/>
+    <circle cx="140" cy="300" r="3" fill="#F59E0B" opacity="0.5"/>
+  </g>
+
+  <!-- DreamAI text -->
+  <text x="256" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="bold" fill="#8B5CF6" text-anchor="middle" letter-spacing="2">DreamAI</text>
+  <text x="256" y="460" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#9CA3AF" text-anchor="middle">Unitulkinta tekoalylta</text>
+</svg>

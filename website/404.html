@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sivua ei löytynyt - Unitulkki</title>
+  <meta name="robots" content="noindex">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-background: #0a0118;
+      --color-surface: rgba(26, 10, 46, 0.8);
+      --color-primary: #8b5cf6;
+      --color-primary-light: #a78bfa;
+      --color-text: #f8fafc;
+      --color-text-muted: #94a3b8;
+      --color-border: rgba(139, 92, 246, 0.2);
+      --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+      --gradient-background: linear-gradient(180deg, #0a0118 0%, #1a0a2e 50%, #0f0520 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--gradient-background);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      padding: 1rem 2rem;
+      background: rgba(10, 1, 24, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .error-container {
+      max-width: 500px;
+    }
+
+    .error-icon {
+      font-size: 6rem;
+      margin-bottom: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .error-code {
+      font-size: 5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: var(--color-text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 30px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-primary);
+    }
+
+    .links {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .links p {
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .links a {
+      color: var(--color-primary-light);
+      text-decoration: none;
+      margin: 0 0.75rem;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      padding: 1.5rem;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 480px) {
+      .error-code {
+        font-size: 4rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">Unitulkki</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="error-container">
+      <div class="error-icon">🌙</div>
+      <div class="error-code">404</div>
+      <h1>Sivua ei löytynyt</h1>
+      <p>
+        Vaikuttaa siltä, että tämä sivu on kadonnut unien maailmaan.
+        Etsimääsi sivua ei ole olemassa tai se on siirretty.
+      </p>
+
+      <div class="buttons">
+        <a href="/" class="btn btn-primary">
+          <span>🏠</span> Etusivulle
+        </a>
+        <a href="/tuki" class="btn btn-secondary">
+          <span>💬</span> Tuki
+        </a>
+      </div>
+
+      <div class="links">
+        <p>Tai kokeile näitä sivuja:</p>
+        <a href="/tietosuoja">Tietosuoja</a>
+        <a href="/kayttoehdot">Käyttöehdot</a>
+        <a href="/tuki">Tuki</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Unitulkki. Kaikki oikeudet pidätetään.</p>
+  </footer>
+</body>
+</html>

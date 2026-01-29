@@ -1,17 +1,17 @@
-import { Link, Stack } from 'expo-router';
-import { StyleSheet } from 'react-native';
-
-import { Text, View } from '@/components/Themed';
+import { Link, Stack } from "expo-router";
+import { StyleSheet, View, Text } from "react-native";
+import { colors } from "@/lib/design-tokens";
 
 export default function NotFoundScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
+      <Stack.Screen options={{ title: "Hups!" }} />
       <View style={styles.container}>
-        <Text style={styles.title}>This screen doesn't exist.</Text>
+        <Text style={styles.title}>Sivua ei löytynyt</Text>
+        <Text style={styles.subtitle}>Tätä sivua ei ole olemassa.</Text>
 
         <Link href="/" style={styles.link}>
-          <Text style={styles.linkText}>Go to home screen!</Text>
+          <Text style={styles.linkText}>Takaisin etusivulle</Text>
         </Link>
       </View>
     </>
@@ -21,20 +21,31 @@ export default function NotFoundScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
+    backgroundColor: colors.background,
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 24,
+    fontWeight: "bold",
+    color: colors.text,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: colors.textMuted,
+    marginBottom: 24,
   },
   link: {
-    marginTop: 15,
-    paddingVertical: 15,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    backgroundColor: colors.primary,
+    borderRadius: 12,
   },
   linkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "600",
   },
 });

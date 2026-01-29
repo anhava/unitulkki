@@ -1,41 +1,68 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
 
 # Expo
 .expo/
 dist/
 web-build/
-expo-env.d.ts
-
-# Native
-.kotlin/
-*.orig.*
 *.jks
 *.p8
 *.p12
 *.key
 *.mobileprovision
+*.orig.*
 
-# Metro
-.metro-health-check*
+# Native builds
+*.hprof
+android/
+ios/
 
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
 
-# macOS
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 .DS_Store
-*.pem
 
-# local env files
-.env*.local
+# Testing
+coverage/
+.nyc_output
 
-# typescript
+# Build artifacts
 *.tsbuildinfo
 
-# generated native folders
-/ios
-/android
+# Secrets (NEVER commit these)
+google-play-service-account.json
+*.keystore
+*.jks
+AuthKey_*.p8
+
+# Vercel
+.vercel
+
+# EAS
+.easignore
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# MCP/Tool specific
+.playwright-mcp/
+.serena/

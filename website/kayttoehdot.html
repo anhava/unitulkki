@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Käyttöehdot - Unitulkki</title>
+  <meta name="description" content="Unitulkki-sovelluksen käyttöehdot. Lue palvelun käyttöön liittyvät ehdot ja säännöt.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-background: #0a0118;
+      --color-surface: rgba(26, 10, 46, 0.8);
+      --color-primary: #8b5cf6;
+      --color-primary-light: #a78bfa;
+      --color-text: #f8fafc;
+      --color-text-muted: #94a3b8;
+      --color-border: rgba(139, 92, 246, 0.2);
+      --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+      --gradient-background: linear-gradient(180deg, #0a0118 0%, #1a0a2e 50%, #0f0520 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--gradient-background);
+      color: var(--color-text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      background: rgba(10, 1, 24, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--color-text);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .last-updated {
+      color: var(--color-text-muted);
+      margin-bottom: 3rem;
+    }
+
+    .content {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(20px);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary-light);
+    }
+
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--color-text-muted);
+    }
+
+    ul, ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      color: var(--color-text-muted);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--color-primary-light);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight {
+      background: rgba(139, 92, 246, 0.1);
+      border-left: 3px solid var(--color-primary);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .highlight p {
+      margin: 0;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 6rem 1rem 2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">Unitulkki</a>
+      <a href="/" class="back-link">&larr; Takaisin etusivulle</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Käyttöehdot</h1>
+    <p class="last-updated">Päivitetty: 17. tammikuuta 2025</p>
+
+    <div class="content">
+      <h2>1. Ehtojen hyväksyminen</h2>
+      <p>
+        Käyttämällä Unitulkki-sovellusta ("Sovellus", "Palvelu") hyväksyt nämä käyttöehdot
+        kokonaisuudessaan. Jos et hyväksy näitä ehtoja, älä käytä Sovellusta.
+      </p>
+
+      <div class="highlight">
+        <p><strong>Tiivistelmä:</strong> Käyttämällä sovellusta sitoudut noudattamaan näitä ehtoja.
+        Sovellus on tarkoitettu viihde- ja itsetutkiskelutarkoituksiin.</p>
+      </div>
+
+      <h2>2. Palvelun kuvaus</h2>
+      <p>
+        Unitulkki on tekoälypohjainen sovellus, joka tarjoaa unien tulkintapalveluita.
+        Sovellus käyttää tekoälyä analysoimaan käyttäjän kirjoittamia unikuvauksia ja
+        tarjoamaan mahdollisia tulkintoja.
+      </p>
+      <p><strong>Tärkeää:</strong></p>
+      <ul>
+        <li>Tulkinnat ovat viihde- ja itsetutkiskelutarkoituksiin</li>
+        <li>Tulkinnat eivät ole lääketieteellisiä, psykologisia tai ammatillisia neuvoja</li>
+        <li>Sovellus ei korvaa ammattiapua mielenterveys- tai terveysasioissa</li>
+      </ul>
+
+      <h2>3. Käyttäjätilit ja tilaukset</h2>
+
+      <h3>3.1 Ilmainen versio</h3>
+      <p>Ilmainen versio sisältää rajoitetun määrän tulkintoja kuukaudessa (3 kpl).</p>
+
+      <h3>3.2 Premium-tilaus (Unitulkki Pro)</h3>
+      <p>Premium-tilaus tarjoaa:</p>
+      <ul>
+        <li>Rajattomat unien tulkinnat</li>
+        <li>Syvemmän analyysin</li>
+        <li>PDF-viennin</li>
+        <li>Unikuvioiden seurannan</li>
+      </ul>
+
+      <h3>3.3 Maksut ja laskutus</h3>
+      <ul>
+        <li>Tilaukset käsitellään Apple App Storen tai Google Play Kaupan kautta</li>
+        <li>Kuukausitilaus laskutetaan kuukausittain</li>
+        <li>Vuositilaus laskutetaan vuosittain</li>
+        <li>Elinikäinen tilaus on kertamaksu</li>
+        <li>Hinnat sisältävät sovellettavan arvonlisäveron</li>
+      </ul>
+
+      <h3>3.4 Tilauksen peruuttaminen</h3>
+      <ul>
+        <li>Voit peruuttaa tilauksen milloin tahansa</li>
+        <li>Peruutus astuu voimaan laskutuskauden lopussa</li>
+        <li>Peruuta iOS: Asetukset → Apple ID → Tilaukset</li>
+        <li>Peruuta Android: Google Play → Tilaukset</li>
+        <li>Jo maksettuja maksuja ei palauteta osittain</li>
+      </ul>
+
+      <h2>4. Käyttäjän velvollisuudet</h2>
+      <p>Sitoudut:</p>
+      <ul>
+        <li>Käyttämään Sovellusta lain mukaisesti</li>
+        <li>Olemaan jakamatta loukkaavaa, laitonta tai haitallista sisältöä</li>
+        <li>Olemaan yrittämättä kiertää Sovelluksen rajoituksia</li>
+        <li>Olemaan käyttämättä Sovellusta kaupallisiin tarkoituksiin ilman lupaa</li>
+        <li>Olemaan kopioimatta tai jakamatta Sovelluksen sisältöä</li>
+      </ul>
+
+      <h2>5. Immateriaalioikeudet</h2>
+      <p>
+        Kaikki Sovelluksen sisältö, mukaan lukien mutta ei rajoittuen tekstit, grafiikat,
+        logot, kuvakkeet ja ohjelmistot, ovat Unitulkin tai sen lisenssinantajien omaisuutta
+        ja suojattuja tekijänoikeuslailla.
+      </p>
+      <p>
+        Sinulle myönnetään rajoitettu, ei-yksinomainen, ei-siirrettävä lisenssi käyttää
+        Sovellusta henkilökohtaisiin, ei-kaupallisiin tarkoituksiin näiden ehtojen mukaisesti.
+      </p>
+
+      <h2>6. Käyttäjän sisältö</h2>
+      <p>
+        Säilytät oikeudet kaikkeen sisältöön, jonka syötät Sovellukseen (kuten unikuvaukset).
+        Myönnät meille oikeuden käsitellä tätä sisältöä palvelun tarjoamiseksi.
+      </p>
+      <p>
+        Emme jaa unikuvauksiasi kolmansille osapuolille muuten kuin
+        <a href="/tietosuoja">tietosuojakäytännössämme</a> kuvatulla tavalla.
+      </p>
+
+      <h2>7. Vastuunrajoitus</h2>
+      <p><strong>Sovellus tarjotaan "sellaisena kuin se on" ilman takuita.</strong></p>
+      <ul>
+        <li>Emme takaa tulkintojen tarkkuutta tai soveltuvuutta</li>
+        <li>Emme ole vastuussa päätöksistä, jotka teet tulkintojen perusteella</li>
+        <li>Emme ole vastuussa palvelun keskeytyksistä tai virheistä</li>
+        <li>Vastuumme rajoittuu maksamasi tilausmaksun määrään</li>
+      </ul>
+
+      <div class="highlight">
+        <p><strong>Huomio:</strong> Jos koet ahdistusta unien takia tai sinulla on
+        mielenterveysongelmia, ota yhteyttä terveydenhuollon ammattilaiseen.
+        Kriisitilanteessa soita Kriisipuhelimeen: 09 2525 0111</p>
+      </div>
+
+      <h2>8. Vahingonkorvaus</h2>
+      <p>
+        Sitoudut korvaamaan ja pitämään Unitulkin ja sen työntekijät vahingoittomina
+        kaikista vaatimuksista, jotka johtuvat näiden ehtojen rikkomisesta tai
+        Sovelluksen väärinkäytöstä.
+      </p>
+
+      <h2>9. Palvelun muutokset</h2>
+      <p>
+        Pidätämme oikeuden:
+      </p>
+      <ul>
+        <li>Muuttaa tai lopettaa Sovelluksen ominaisuuksia</li>
+        <li>Muuttaa hintoja ilmoittamalla etukäteen</li>
+        <li>Päivittää näitä käyttöehtoja</li>
+      </ul>
+      <p>
+        Ilmoitamme merkittävistä muutoksista sovelluksen kautta tai sähköpostitse.
+        Jatkuva käyttö muutosten jälkeen tarkoittaa muutosten hyväksymistä.
+      </p>
+
+      <h2>10. Tilin sulkeminen</h2>
+      <p>
+        Voimme sulkea tai rajoittaa pääsyäsi Sovellukseen, jos:
+      </p>
+      <ul>
+        <li>Rikot näitä käyttöehtoja</li>
+        <li>Käytät Sovellusta petollisiin tarkoituksiin</li>
+        <li>Häiritset muiden käyttäjien käyttöä</li>
+      </ul>
+
+      <h2>11. Sovellettava laki ja riitojen ratkaisu</h2>
+      <p>
+        Näihin ehtoihin sovelletaan Suomen lakia. Mahdolliset riidat pyritään
+        ratkaisemaan ensisijaisesti neuvotteluteitse. Jos riitaa ei voida ratkaista
+        neuvotteluilla, asia ratkaistaan Helsingin käräjäoikeudessa.
+      </p>
+      <p>
+        Kuluttajana sinulla on oikeus nostaa kanne myös kotipaikkaasi käräjäoikeudessa.
+        Voit myös käyttää <a href="https://ec.europa.eu/consumers/odr" target="_blank">
+        EU:n verkkovälitteistä riidanratkaisualustaa (ODR)</a>.
+      </p>
+
+      <h2>12. Erotettavuus</h2>
+      <p>
+        Jos jokin näiden ehtojen osa todetaan pätemättömäksi, muut osat pysyvät voimassa.
+      </p>
+
+      <h2>13. Koko sopimus</h2>
+      <p>
+        Nämä käyttöehdot yhdessä <a href="/tietosuoja">tietosuojakäytännön</a> kanssa
+        muodostavat koko sopimuksen sinun ja Unitulkin välillä Sovelluksen käytöstä.
+      </p>
+
+      <h2>14. Yhteystiedot</h2>
+      <p>Kysymyksiä käyttöehdoista? Ota yhteyttä:</p>
+      <ul>
+        <li><strong>Sähköposti:</strong> <a href="mailto:tuki@unitulkki.site">tuki@unitulkki.site</a></li>
+        <li><strong>Verkkosivu:</strong> <a href="https://unitulkki.site/tuki">unitulkki.site/tuki</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Unitulkki. Kaikki oikeudet pidätetään.</p>
+    <p><a href="/">Etusivu</a> · <a href="/tietosuoja">Tietosuoja</a> · <a href="/tuki">Tuki</a></p>
+  </footer>
+</body>
+</html>

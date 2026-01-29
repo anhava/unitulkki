@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tietosuojakäytäntö - Unitulkki</title>
+  <meta name="description" content="Unitulkki-sovelluksen tietosuojakäytäntö. Lue miten käsittelemme ja suojaamme tietojasi.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-background: #0a0118;
+      --color-surface: rgba(26, 10, 46, 0.8);
+      --color-primary: #8b5cf6;
+      --color-primary-light: #a78bfa;
+      --color-text: #f8fafc;
+      --color-text-muted: #94a3b8;
+      --color-border: rgba(139, 92, 246, 0.2);
+      --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+      --gradient-background: linear-gradient(180deg, #0a0118 0%, #1a0a2e 50%, #0f0520 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--gradient-background);
+      color: var(--color-text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 2rem;
+      background: rgba(10, 1, 24, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--color-text);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 8rem 2rem 4rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .last-updated {
+      color: var(--color-text-muted);
+      margin-bottom: 3rem;
+    }
+
+    .content {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(20px);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary-light);
+    }
+
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: var(--color-text-muted);
+    }
+
+    ul, ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      color: var(--color-text-muted);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--color-primary-light);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight {
+      background: rgba(139, 92, 246, 0.1);
+      border-left: 3px solid var(--color-primary);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .highlight p {
+      margin: 0;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 6rem 1rem 2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">Unitulkki</a>
+      <a href="/" class="back-link">← Takaisin etusivulle</a>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Tietosuojakäytäntö</h1>
+    <p class="last-updated">Päivitetty: 17. tammikuuta 2025</p>
+
+    <div class="content">
+      <h2>1. Johdanto</h2>
+      <p>
+        Tämä tietosuojakäytäntö kuvaa, miten Unitulkki-sovellus ("Sovellus", "me", "meidän")
+        kerää, käyttää ja suojaa henkilötietojasi. Yksityisyytesi on meille tärkeää, ja
+        sitoudumme suojaamaan henkilötietojasi EU:n yleisen tietosuoja-asetuksen (GDPR)
+        ja Suomen tietosuojalain mukaisesti.
+      </p>
+
+      <div class="highlight">
+        <p><strong>Tiivistelmä:</strong> Unesi ja henkilötietosi säilyvät pääasiassa laitteellasi.
+        Emme myy tietojasi kolmansille osapuolille.</p>
+      </div>
+
+      <h2>2. Kerättävät tiedot</h2>
+
+      <h3>2.1 Tiedot, jotka annat meille</h3>
+      <ul>
+        <li><strong>Unikertomukset:</strong> Kirjoittamasi unikuvaukset tulkintaa varten</li>
+        <li><strong>Tilaustiedot:</strong> Tilauksen hallintaan tarvittavat tiedot (käsitellään App Storen / Google Playn kautta)</li>
+      </ul>
+
+      <h3>2.2 Automaattisesti kerättävät tiedot</h3>
+      <ul>
+        <li><strong>Käyttötiedot:</strong> Anonyymit tilastot sovelluksen käytöstä</li>
+        <li><strong>Laitetiedot:</strong> Laitetyyppi ja käyttöjärjestelmän versio (vianhakua varten)</li>
+        <li><strong>Tilauksen tila:</strong> RevenueCat-palvelun kautta tilauksen hallintaan</li>
+      </ul>
+
+      <h3>2.3 Tiedot, joita emme kerää</h3>
+      <ul>
+        <li>Emme kerää nimeäsi tai yhteystietojasi (ellei ota meihin yhteyttä)</li>
+        <li>Emme kerää sijaintitietoja</li>
+        <li>Emme kerää yhteystietoja tai kalenteritietoja</li>
+      </ul>
+
+      <h2>3. Tietojen käyttö</h2>
+      <p>Käytämme kerättyjä tietoja seuraaviin tarkoituksiin:</p>
+      <ul>
+        <li>Unien tulkintapalvelun tarjoamiseen</li>
+        <li>Tilausten ja maksujen käsittelyyn</li>
+        <li>Sovelluksen kehittämiseen ja parantamiseen</li>
+        <li>Teknisten ongelmien ratkaisemiseen</li>
+        <li>Lakisääteisten velvoitteiden täyttämiseen</li>
+      </ul>
+
+      <h2>4. Tietojen säilytys</h2>
+
+      <h3>4.1 Paikallinen tallennus</h3>
+      <p>
+        Unikertomuksesi ja tulkinnat tallennetaan <strong>paikallisesti laitteellesi</strong>.
+        Nämä tiedot eivät siirry palvelimillemme, ellet erikseen vie niitä (esim. PDF-vienti).
+      </p>
+
+      <h3>4.2 Pilvipalvelut</h3>
+      <p>Käytämme seuraavia kolmannen osapuolen palveluita:</p>
+      <ul>
+        <li><strong>Perplexity AI:</strong> Unien tulkintaan (unitekstisi lähetetään tulkintaa varten, ei tallenneta pysyvästi)</li>
+        <li><strong>RevenueCat:</strong> Tilausten hallintaan (<a href="https://www.revenuecat.com/privacy" target="_blank">Tietosuojakäytäntö</a>)</li>
+        <li><strong>Apple App Store / Google Play:</strong> Maksujen käsittelyyn</li>
+      </ul>
+
+      <h2>5. Tietojen jakaminen</h2>
+      <p>
+        <strong>Emme myy, vuokraa tai jaa henkilötietojasi kolmansille osapuolille</strong>
+        markkinointitarkoituksiin. Tietoja voidaan jakaa ainoastaan:
+      </p>
+      <ul>
+        <li>Palveluntarjoajillemme, jotka auttavat palvelun toimittamisessa (yllä mainitut)</li>
+        <li>Lakisääteisten velvoitteiden täyttämiseksi</li>
+        <li>Oikeuksiemme suojaamiseksi</li>
+      </ul>
+
+      <h2>6. Tietoturva</h2>
+      <p>Suojaamme tietojasi seuraavilla toimenpiteillä:</p>
+      <ul>
+        <li>Salattu tiedonsiirto (HTTPS/TLS)</li>
+        <li>Paikallinen tallennus laitteellasi</li>
+        <li>Turvalliset kolmannen osapuolen palvelut</li>
+        <li>Säännölliset tietoturva-arvioinnit</li>
+      </ul>
+
+      <h2>7. Oikeutesi (GDPR)</h2>
+      <p>EU:n tietosuoja-asetuksen mukaan sinulla on seuraavat oikeudet:</p>
+      <ul>
+        <li><strong>Oikeus päästä tietoihin:</strong> Voit pyytää kopion tiedoistasi</li>
+        <li><strong>Oikeus oikaisuun:</strong> Voit pyytää virheellisten tietojen korjaamista</li>
+        <li><strong>Oikeus poistamiseen:</strong> Voit pyytää tietojesi poistamista ("oikeus tulla unohdetuksi")</li>
+        <li><strong>Oikeus siirtää tiedot:</strong> Voit pyytää tietojasi siirrettävässä muodossa</li>
+        <li><strong>Oikeus vastustaa:</strong> Voit vastustaa tietojenkäsittelyä tietyissä tilanteissa</li>
+        <li><strong>Oikeus rajoittaa käsittelyä:</strong> Voit pyytää käsittelyn rajoittamista</li>
+      </ul>
+
+      <div class="highlight">
+        <p>Käytä oikeuksiasi ottamalla yhteyttä: <a href="mailto:tuki@unitulkki.site">tuki@unitulkki.site</a></p>
+      </div>
+
+      <h2>8. Tietojen poistaminen</h2>
+      <p>Voit poistaa tietosi seuraavasti:</p>
+      <ul>
+        <li><strong>Unihistoria:</strong> Asetukset → Tyhjennä unihistoria</li>
+        <li><strong>Kaikki paikalliset tiedot:</strong> Poista sovellus laitteeltasi</li>
+        <li><strong>Tilaustiedot:</strong> Peruuta tilaus App Storessa / Google Playssa ja ota yhteyttä meihin</li>
+      </ul>
+
+      <h2>9. Lapset</h2>
+      <p>
+        Sovellus ei ole tarkoitettu alle 13-vuotiaille lapsille. Emme tietoisesti kerää
+        henkilötietoja alle 13-vuotiailta. Jos huomaat, että lapsi on antanut meille
+        henkilötietoja, ota yhteyttä meihin, niin poistamme tiedot.
+      </p>
+
+      <h2>10. Evästeet ja seurantateknologiat</h2>
+      <p>
+        Sovellus ei käytä evästeitä. Verkkosivustomme saattaa käyttää välttämättömiä
+        teknisiä evästeitä toiminnan varmistamiseksi.
+      </p>
+
+      <h2>11. Muutokset tietosuojakäytäntöön</h2>
+      <p>
+        Voimme päivittää tätä tietosuojakäytäntöä ajoittain. Ilmoitamme merkittävistä
+        muutoksista sovelluksen kautta tai sähköpostitse. Suosittelemme tarkistamaan
+        tämän sivun säännöllisesti.
+      </p>
+
+      <h2>12. Yhteystiedot</h2>
+      <p>Jos sinulla on kysyttävää tietosuojakäytännöstämme, ota yhteyttä:</p>
+      <ul>
+        <li><strong>Sähköposti:</strong> <a href="mailto:tuki@unitulkki.site">tuki@unitulkki.site</a></li>
+        <li><strong>Verkkosivu:</strong> <a href="https://unitulkki.site/tuki">unitulkki.site/tuki</a></li>
+      </ul>
+
+      <h2>13. Valvontaviranomainen</h2>
+      <p>
+        Jos koet, että henkilötietojesi käsittelyssä on rikottu tietosuojalainsäädäntöä,
+        sinulla on oikeus tehdä valitus valvontaviranomaiselle:
+      </p>
+      <p>
+        <strong>Tietosuojavaltuutetun toimisto</strong><br>
+        Lintulahdenkuja 4, 00530 Helsinki<br>
+        Puhelin: 029 566 6700<br>
+        Sähköposti: tietosuoja@om.fi<br>
+        Verkkosivu: <a href="https://tietosuoja.fi" target="_blank">tietosuoja.fi</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Unitulkki. Kaikki oikeudet pidätetään.</p>
+    <p><a href="/">Etusivu</a> · <a href="/kayttoehdot">Käyttöehdot</a> · <a href="/tuki">Tuki</a></p>
+  </footer>
+</body>
+</html>

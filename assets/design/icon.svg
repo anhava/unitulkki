@@ -1,0 +1,55 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="1024" y2="1024">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#0a0118"/>
+    </linearGradient>
+    <linearGradient id="moonGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="starGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bgGradient)"/>
+
+  <!-- Subtle stars in background -->
+  <circle cx="200" cy="200" r="3" fill="#ffffff" opacity="0.3"/>
+  <circle cx="800" cy="150" r="2" fill="#ffffff" opacity="0.2"/>
+  <circle cx="150" cy="600" r="2" fill="#ffffff" opacity="0.25"/>
+  <circle cx="850" cy="700" r="3" fill="#ffffff" opacity="0.3"/>
+  <circle cx="700" cy="300" r="2" fill="#ffffff" opacity="0.2"/>
+  <circle cx="300" cy="800" r="2" fill="#ffffff" opacity="0.25"/>
+
+  <!-- Moon crescent with glow -->
+  <g filter="url(#glow)">
+    <!-- Main moon circle -->
+    <circle cx="512" cy="460" r="260" fill="url(#moonGradient)"/>
+    <!-- Cutout for crescent effect -->
+    <circle cx="620" cy="360" r="200" fill="url(#bgGradient)"/>
+  </g>
+
+  <!-- Decorative stars -->
+  <g filter="url(#glow)">
+    <!-- Large star -->
+    <path d="M720 520 L730 550 L760 560 L730 570 L720 600 L710 570 L680 560 L710 550 Z" fill="url(#starGlow)"/>
+    <!-- Small stars -->
+    <circle cx="650" cy="350" r="8" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="780" cy="450" r="6" fill="#F59E0B" opacity="0.6"/>
+  </g>
+
+  <!-- AI text indication (subtle) -->
+  <text x="512" y="780" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="bold" fill="#8B5CF6" text-anchor="middle" opacity="0.9">DreamAI</text>
+</svg>

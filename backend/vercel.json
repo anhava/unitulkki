@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/*.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/interpret$",
+      "dest": "/api/interpret.ts"
+    },
+    {
+      "src": "/api/interpret-structured$",
+      "dest": "/api/interpret-structured.ts"
+    },
+    {
+      "src": "/api/transcribe$",
+      "dest": "/api/transcribe.ts"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Android Adaptive Icon Foreground - moon with stars, transparent background -->
+  <!-- Safe zone: inner 66% (170px padding on each side for 1024px) -->
+  <defs>
+    <linearGradient id="moonGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="starGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Mask for crescent -->
+    <mask id="crescentMask">
+      <rect width="1024" height="1024" fill="white"/>
+      <circle cx="620" cy="360" r="200" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Moon crescent with glow - centered in safe zone -->
+  <g filter="url(#glow)">
+    <circle cx="512" cy="460" r="260" fill="url(#moonGradient)" mask="url(#crescentMask)"/>
+  </g>
+
+  <!-- Decorative stars -->
+  <g filter="url(#glow)">
+    <!-- Large star -->
+    <path d="M720 520 L730 550 L760 560 L730 570 L720 600 L710 570 L680 560 L710 550 Z" fill="url(#starGlow)"/>
+    <!-- Small stars -->
+    <circle cx="650" cy="350" r="10" fill="#F59E0B" opacity="0.9"/>
+    <circle cx="780" cy="450" r="8" fill="#F59E0B" opacity="0.7"/>
+  </g>
+</svg>
